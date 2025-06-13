@@ -1,0 +1,159 @@
+@import "./mixin.scss";
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #111, #222);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 0 2rem;
+  font-family: "Segoe UI", sans-serif;
+
+  &__nav {
+    @include flex(row, space-between, center);
+    padding: 2rem 0;
+
+    & h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+  }
+
+  &__main {
+    flex: 1;
+    min-height: 60vh;
+    @include flex(row, space-between, center);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__text {
+    max-width: 600px;
+
+    & h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+
+      & span {
+        color: #00bfff;
+      }
+    }
+
+    & p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+  }
+
+  &__btn {
+    background-color: #00bfff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #009acd;
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  .blue-object {
+    @include square(400px);
+    background-color: #00bfff;
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    border-radius: 3rem;
+    transform: rotate(12deg);
+    opacity: 0.8;
+    z-index: 0;
+    animation: rotate 25s infinite;
+    box-shadow: 0 0 40px rgba(0, 191, 255, 0.4);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: calc(100% + 20px);
+      height: calc(100% + 20px);
+      border-radius: 1.5rem;
+      background: #00bfff;
+      opacity: 0.5;
+      filter: blur(40px);
+      z-index: -1;
+    }
+  }
+
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(20px);
+    opacity: 0.2;
+
+    &--pink {
+      background-color: #ff61b0;
+      @include square(60px);
+      top: 5%;
+      left: 5%;
+      animation: pulse 6s infinite;
+    }
+
+    &--yellow {
+      background-color: #ffeb3b;
+      @include square(80px);
+      bottom: 10%;
+      left: 35%;
+      animation: bounce 10s infinite;
+    }
+
+    &--green {
+      background-color: #4caf50;
+      @include square(50px);
+      top: 50%;
+      right: 30%;
+      animation: bounce 20s cubic-bezier(0.69, 0.09, 0.54, 1.2) infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(2);
+  }
+  50% {
+    transform: scale(5);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(2) translateY(-200px);
+  }
+}
+
+@keyframes rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+}
